@@ -1,4 +1,4 @@
-FROM ubuntu:17.04
+FROM ubuntu:18.10
 
 # mod_tile
 RUN apt-get update && \
@@ -30,7 +30,7 @@ RUN npm install -g carto
 RUN carto project.mml > style.xml
 
 # import tile data
-RUN apt-get install -y osm2pgsql postgresql
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y osm2pgsql postgresql
 RUN apt-get install -y sudo
 RUN curl http://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf > /tmp/new-york-latest.osm.pbf
 COPY import.sh /tmp/import.sh
